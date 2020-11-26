@@ -41,3 +41,17 @@ newItemForm.addEventListener("submit", function(e) {
 
     input.focus();
 });
+
+function drawItem(item) {
+    
+    const itemWrapper = document.createElement("li");
+    // TODO id format should be todo-id-xxx where xxx is a constantly increasing number read from local storage starting at 1
+    itemWrapper.setAttribute("id", itemWrapper.id);
+
+    const itemContent = `
+        <input type="checkbox" id="todo-${item}.id">
+        <label for="todo-${item.id}">${item.name}</label>
+        <button aria-label="delete todo-${item.id}">&times;</button>
+    `;
+
+}
