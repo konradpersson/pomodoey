@@ -1,7 +1,10 @@
+// Accesibility help from https://inclusive-components.design/a-todo-list/
+// Vanilla JS help from https://webdesign.tutsplus.com/tutorials/to-do-app-with-vanilla-javascript--cms-35258
+// With some help from https://codepen.io/ImagineProgramming/pen/ZYEZxJ
+
 const newItemForm = document.querySelector(".new-item-form");
 const newItemButton = document.querySelector(".new-item-form button");
 const todoList = document.querySelector(".todo-list");
-let removeTodoItemButtons = document.querySelectorAll(".remove-todo-item");
 
 let items = JSON.parse(localStorage.getItem("items")) || [];
 
@@ -34,7 +37,7 @@ newItemForm.addEventListener("submit", function(e) {
     const input = this.name;
     const inputVal = input.value;
 
-    if (inputVal != "") {
+    if (inputVal !== "") {
         const item = {
             id: new Date().getTime(),
             name: inputVal,
@@ -68,7 +71,7 @@ function drawItem(item) {
     itemWrapper.innerHTML = itemContent;
     todoList.appendChild(itemWrapper);
 
-};
+}
 
 todoList.addEventListener("click", (e) => {
     if ( e.target.classList.contains("remove-todo-item")) {
@@ -85,4 +88,4 @@ function removeItem(itemWrapperId) {
     localStorage.setItem("items", JSON.stringify(items));
 
     document.getElementById(itemWrapperId).remove();
-};
+}
