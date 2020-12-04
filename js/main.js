@@ -8,6 +8,7 @@ const todoList = document.querySelector(".todo-list");
 
 let items = JSON.parse(localStorage.getItem("items")) || [];
 
+// TODO function
 if (localStorage.getItem("items")) {
     items.map((item) => {
         drawItem(item);
@@ -63,7 +64,7 @@ function drawItem(item) {
     itemWrapper.setAttribute("id", item.id);
 
     const itemContent = `
-        <input type="checkbox" id="todo-${item.id}">
+        <input type="checkbox" id="todo-${item.id}" class="toggle-complete-todo-item">
         <label for="todo-${item.id}">${item.name}</label>
         <button aria-label="delete todo-${item.id}" class="remove-todo-item">&times;</button>
     `;
@@ -71,15 +72,33 @@ function drawItem(item) {
     itemWrapper.innerHTML = itemContent;
     todoList.appendChild(itemWrapper);
 
+    const itemCheckbox = document.getElementById("todo-" + item.id);
+
+    if (item.complete == true) {
+        itemCheckbox.checked = true;
+    }
+
 }
 
 todoList.addEventListener("click", (e) => {
     if ( e.target.classList.contains("remove-todo-item")) {
         const itemWrapperId = e.target.closest("li").id;
         removeItem(itemWrapperId);
+
+        // How do i target the input type checkbox?
+    } else if ( e.target.classList.contains("toggle-complete-todo-item")) {
+        const itemWrapperId = e.target.closest("li").id;
+        updateItem(itemWrapperId);
     }
 });
 
+function updateItem (itemWrapperId) {
+    const item = items.find((item) => item.id === parseInt(itemWrapperId));
+    
+    item.complete = !item.complete;
+
+    localStorage.setItem("items", JSON.stringify(items));
+}
 
 
 function removeItem(itemWrapperId) {
