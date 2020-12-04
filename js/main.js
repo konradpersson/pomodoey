@@ -1,6 +1,7 @@
 // Accesibility help from https://inclusive-components.design/a-todo-list/
 // Vanilla JS help from https://webdesign.tutsplus.com/tutorials/to-do-app-with-vanilla-javascript--cms-35258
 // With some help from https://codepen.io/ImagineProgramming/pen/ZYEZxJ
+// More help from https://www.javascripttutorial.net/javascript-dom/javascript-checkbox/
 
 const newItemForm = document.querySelector(".new-item-form");
 const newItemButton = document.querySelector(".new-item-form button");
@@ -34,7 +35,7 @@ newItemForm.addEventListener("submit", function(e) {
 
     e.preventDefault();
 
-    // I dont get this - How do I select a specific name which is not name
+    // HELP! I dont get this - How do I select a specific name which is not name
     const input = this.name;
     const inputVal = input.value;
 
@@ -60,7 +61,7 @@ newItemForm.addEventListener("submit", function(e) {
 function drawItem(item) {
     
     const itemWrapper = document.createElement("li");
-    // TODO id format should be todo-id-xxx where xxx is a constantly increasing number read from local storage starting at 1
+
     itemWrapper.setAttribute("id", item.id);
 
     const itemContent = `
